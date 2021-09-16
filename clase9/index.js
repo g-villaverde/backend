@@ -8,6 +8,8 @@ const router = Express.Router();
 const server = app.listen(PORT, () => console.log('servidor inicializado'));
 
 app.use(Express.static('public'));
+app.use(Express.json());
+app.use(Express.urlencoded({extended: false}));
 
 app.get("/", (_, res) => {
     res.json("hola")
@@ -32,10 +34,9 @@ app.get('/productos/:id', (req, res) => {
 
 app.put("/productos/actualizar/:id", (req, res) => {
     const { id } = req.params;
-    const {title} = req.body.title;
+    const {title} = req.body;
     const producto = productos.find((producto) => producto.id = id);
-
-    user.title = title;    
+   
 })
 
 
